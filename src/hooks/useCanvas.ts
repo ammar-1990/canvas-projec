@@ -35,9 +35,13 @@ export const useCanvas =(color:string,util:'pen' | 'rect'| 'move')=>{
         canvasOffsetX.current = canvasOffset.left
         canvasOffsetY.current = canvasOffset.top
 
-      
-        
+const handler = (e:MouseEvent)=>{
+    console.log(e.offsetX,e.offsetY)
+}
 
+      canvasRef.current.addEventListener('mousemove',handler)
+        
+return ()=>canvasRef.current?.removeEventListener('mousemove',handler)
        
 
     },[color])
@@ -107,13 +111,14 @@ if(!startX.current || !startY.current) return
 
 
 
+// const rectWidth = newMouseX.current! - startX.current!
+// const rectHeight = newMouseY.current! - startY.current!
+
+
+
 // contextRef.current?.clearRect(0,0,canvasRef.current?.width as number,canvasRef.current?.height as number)  //could be deleted
 
 // contextRef.current?.strokeRect(startX.current,startY.current,rectWidth,rectHeight)
-
-
-
-
             
         }
 

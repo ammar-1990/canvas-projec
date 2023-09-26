@@ -61,7 +61,7 @@ function App() {
   }
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center bg-slate-300">
+    <div className="w-screen h-screen flex justify-center items-center bg-slate-100 overflow-y-auto">
       <div className="flex flex-col ">
         <Canvas
           canvasRef={canvasRef}
@@ -75,7 +75,7 @@ function App() {
           color={color}
           util={util}
         />
-        <div className="mt-4 flex md:flex-row flex-col gap-y-3 items-center md:justify-between ">
+        <div className="mt-4 flex md:flex-row flex-col gap-y-3 items-center md:justify-between  ">
           <div>
             <label
               htmlFor="file"
