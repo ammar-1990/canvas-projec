@@ -7,7 +7,7 @@ type Props = {
     className?:string,
     canvasRef:React.MutableRefObject<HTMLCanvasElement | null>
     color:string,
-    util:'pen'| 'rect'| 'move'
+    util:'pen'| 'rect'| 'move' | 'circle'
     contextRef:React.MutableRefObject<CanvasRenderingContext2D | null>,
     startDrawing:({ nativeEvent }: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => void,
     draw:({ nativeEvent }: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => void,

@@ -6,7 +6,7 @@ import { useCanvas } from "./hooks/useCanvas";
 
 function App() {
   const [color, setColor] = useState("#000");
-  const [util, setUtil] = useState<"pen" | "rect" | "move">("pen");
+  const [util, setUtil] = useState<"pen" | "rect" | "move" | 'circle'>("pen");
 
   const [dragging, setDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
@@ -100,7 +100,7 @@ function App() {
           </button>
         </div>
       </div>
-      <div className="fixed top-0 right-0  mt-4 mr-4 flex flex-col ">
+      <div className="fixed top-0 right-0 flex flex-col items-center  mt-4 mr-4  w-[250px]">
         <ChromePicker color={color} onChange={(e) => setColor(e.hex)} />
         <Types setUtil={setUtil} util={util} />
       </div>
