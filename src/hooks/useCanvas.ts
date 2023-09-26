@@ -128,10 +128,12 @@ if(!startX.current || !startY.current) return
         }
 
         if(util ==='rect') {
+        if(isDrawing === false) return
             const rectWidth = newMouseX.current! - startX.current!
 const rectHeight = newMouseY.current! - startY.current!
             contextRef.current?.strokeRect(startX.current!,startY.current!,rectWidth,rectHeight)
 setIsDrawing(false)
+
             
         }
       
