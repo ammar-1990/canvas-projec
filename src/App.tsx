@@ -28,9 +28,25 @@ function App() {
     const img = new Image();
     ctx!.clearRect(0, 0, canvas!.width, canvas!.height);
     img.onload = () => {
+
+      const maxWidth = 300; // Maximum width for the scaled image
+      const maxHeight = 300; // Maximum height for the scaled image
+
+      let scaledWidth = img.width;
+      let scaledHeight = img.height;
+
+      if (scaledWidth > maxWidth) {
+        scaledWidth = maxWidth;
+        scaledHeight = (scaledWidth / img.width) * img.height;
+      }
+  
+      if (scaledHeight > maxHeight) {
+        scaledHeight = maxHeight;
+        scaledWidth = (scaledHeight / img.height) * img.width;
+      }
+
       const ctx = contextRef.current!;
-      const scaledWidth = img.width / 2;
-      const scaledHeight = img.height / 2;
+     
       ctx.drawImage(img, 0, 0, scaledWidth, scaledHeight);
 
       imageRef.current = img;
@@ -59,7 +75,7 @@ function App() {
           color={color}
           util={util}
         />
-        <div className="mt-4 flex items-center justify-between">
+        <div className="mt-4 flex md:flex-row flex-col gap-y-3 items-center md:justify-between ">
           <div>
             <label
               htmlFor="file"

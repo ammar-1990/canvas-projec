@@ -15,6 +15,10 @@ export const useCanvas =(color:string,util:'pen' | 'rect'| 'move')=>{
     const startX = useRef<number | null>(null)
     const startY = useRef<number | null>(null)
 
+
+    const newMouseX = useRef<number | null>(null)
+    const newMouseY = useRef<number | null>(null)
+
     const [isDrawing, setIsDrawing] = useState(false)
 
     useEffect(()=>{
@@ -51,7 +55,7 @@ export const useCanvas =(color:string,util:'pen' | 'rect'| 'move')=>{
 
             contextRef.current?.beginPath()
             contextRef.current?.moveTo(offsetX,offsetY)
-            contextRef.current?.lineTo(offsetX,offsetY)
+            // contextRef.current?.lineTo(offsetX,offsetY)
             contextRef.current?.stroke()
             setIsDrawing(true)
             nativeEvent.preventDefault()
@@ -95,18 +99,17 @@ nativeEvent.preventDefault()
 nativeEvent.stopPropagation()
 
 if(!canvasOffsetX.current || !canvasOffsetY.current) return
-const newMouseX = nativeEvent.clientX - canvasOffsetX.current
-const newMouseY = nativeEvent.clientY - canvasOffsetY.current
+ newMouseX.current = nativeEvent.clientX - canvasOffsetX.current
+ newMouseY.current = nativeEvent.clientY - canvasOffsetY.current
 
 
 if(!startX.current || !startY.current) return 
 
-const rectWidth = newMouseX - startX.current
-const rectHeight = newMouseY - startY.current
 
-contextRef.current?.clearRect(0,0,canvasRef.current?.width as number,canvasRef.current?.height as number)  //could be deleted
 
-contextRef.current?.strokeRect(startX.current,startY.current,rectWidth,rectHeight)
+// contextRef.current?.clearRect(0,0,canvasRef.current?.width as number,canvasRef.current?.height as number)  //could be deleted
+
+// contextRef.current?.strokeRect(startX.current,startY.current,rectWidth,rectHeight)
 
 
 
@@ -125,6 +128,9 @@ contextRef.current?.strokeRect(startX.current,startY.current,rectWidth,rectHeigh
         }
 
         if(util ==='rect') {
+            const rectWidth = newMouseX.current! - startX.current!
+const rectHeight = newMouseY.current! - startY.current!
+            contextRef.current?.strokeRect(startX.current!,startY.current!,rectWidth,rectHeight)
 setIsDrawing(false)
             
         }
